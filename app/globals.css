@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 10, 10, 10;
+  --background-end-rgb: 20, 20, 30;
+  --header-height: 80px;
+  --section-min-height: 110vh;
+  --content-max-width: 800px;
+  --content-padding: clamp(1rem, 5vw, 4rem);
+  --navbar-width: clamp(2rem, 5vw, 4rem);
+}
+
+@layer base {
+  :root {
+    --background: 220 25% 10%;
+    --foreground: 0 0% 100%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 0 0% 100%;
+  }
+
+  .dark {
+    --background: 10 10% 10%;
+    --foreground: 0 0% 100%;
+  }
+}
+
+/* Scroll container - Keep this unchanged for section snapping */
+.scroll-container {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Section styles */
+.scroll-section {
+  min-height: var(--section-min-height);
+  width: 100%;
+  position: relative;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  padding: 0 calc(var(--navbar-width) + var(--content-padding));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Section content */
+.section-container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--header-height) 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - var(--header-height) * 2);
+}
+
+/* Section header */
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.section-description {
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  color: var(--muted-foreground);
+  max-width: 36rem;
+  margin: 0 auto;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* Navigation */
+.side-navigation {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  width: var(--navbar-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  padding: 0 1rem;
+}
+
+.side-navigation > * {
+  pointer-events: auto;
+}
+
+.left-navigation {
+  left: 0;
+}
+
+.right-navigation {
+  right: 0;
+}
+
+/* Card styles */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Text styles */
+.text-content {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+}
+
+/* Button styles */
+.button-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: rgb(239, 68, 68);
+  color: white;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  transition: all 0.3s ease;
+}
+
+.button-primary:hover {
+  background-color: rgb(220, 38, 38);
+}
+
+.button-primary:active {
+  transform: scale(0.98);
+}
+
+.button-primary .button-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transform: skewX(-12deg);
+  transition: opacity 0.5s ease;
+}
+
+.button-primary:hover .button-gradient {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+    --navbar-width: 1rem;
+    --content-padding: 1rem;
+  }
+
+  .scroll-section {
+    padding: 0 1rem;
+  }
+
+  .section-container {
+    padding: calc(var(--header-height) + 1rem) 0;
+  }
+}

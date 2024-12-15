@@ -1,0 +1,1 @@
+export const categories = ['All', 'AI', 'Automation', 'Data Science'];

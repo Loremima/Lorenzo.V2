@@ -1,0 +1,5 @@
+:root {
+  --theme-transition-duration: 1500ms;
+  --theme-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --overlay-transition-duration: 750ms;
+}
